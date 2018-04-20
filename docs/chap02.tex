@@ -1,0 +1,155 @@
+\chapter{动力学模型，稳定性分析与分岔理论}
+\section{动力学模型}
+本章主要目的是解释动力学的各个方面（长期的行为，平衡点，吸引盆，规则和不规则的振荡等等）。简单的单种群动力学模型可以表现出包括分岔和混沌在内的非常复杂的性态。
+\section{系统中的相互作用}
+任何一个系统中都存在研究对象之间的相互作用。生态系统更是如此。在很多生态系统中，上千类不同物种以复杂的模式相互作用。从一次近似的角度来看，我们可以抽象出三种不同的基本类型：（a）竞争：两个物种利用相同的资源，一个物种数量越多，对另一个物种就越不利。（b）互惠：物种之间彼此相互受益。真菌和藻类之间的共生，海葵和寄居蟹就属于这一类。（c）宿主-寄生关系：这是一种非对称关系。寄生物从宿主获利但对宿主无利。
+
+由于竞争模式
+
+\section{指数增长的离散与连续模型}
+当然这是一种无限制增长，也是最简单的种群增长模型。
+设\begin{math}R\end{math}为一个离散世代的种群增长率，即是说
+\begin{align}
+	\begin{split}
+		\label{eq:feedforward}
+		{x}'=Rx
+	\end{split}
+\end{align}
+
+\begin{math}x\end{math}为某一世代的密度，而\begin{math}{x}'\end{math}为下一世代密度。如果\begin{math}R\end{math}为常数，则\begin{math}t\end{math}世代后的密度为\begin{math}R^{t}x\end{math}，当\begin{math}R>1\end{math}时，表示爆炸式增长至无穷大。
+
+当种群世代是连续的而不是离散的时候，我们设\begin{math}x(t)\end{math}为\begin{math}t\end{math}时刻的种群数量，则：
+\begin{align*}
+	\begin{split}
+		\label{eq:feedforward}
+		\frac{x\left ( t+\Delta t \right )-x\left ( t \right )}{\Delta t}
+	\end{split}
+\end{align*}
+为时间区间\begin{math}\left [ t,t+\Delta t \right ]\end{math}的平均增长率。
+\begin{align}
+	\begin{split}
+	\label{eq:feedforward}
+	\frac{dx(t)}{dt}=\lim_{\Delta t\to 0}\frac{x(t+\Delta t)-x(t)}{\Delta t}
+	\end{split}
+\end{align}
+
+在应用数学中，我们将其表示为\begin{math}\dot{x}(t)\end{math}，将\begin{math}\frac{\dot{x}}{x}={log\ x}'\end{math}视为种群（单位）增长率。其含义为个体对种群增长率的平均贡献。本文统一用这一种表达记号。
+
+指数增长中，其变化率为常数，即：
+\begin{align}
+	\begin{split}
+	\label{eq:feedforward}
+	\dot{x}=rx
+\end{split}
+\end{align}
+\begin{align}
+	\begin{split}
+	\label{eq:feedforward}
+	x(t)=x(0)e^{rt}
+\end{split}
+\end{align}
+
+至此，对于离散和连续模型，我们都得到了指数增长。
+
+
+\section{连续模型的Logistic增长}
+在资源有限的情况下，\begin{math}r>1\end{math}的增长率都意味着种群随时间世代增加;较大的种群意味着较少的资源，又隐含了较少的增长率。此时增长率\begin{math}r\end{math}为\begin{math}x\end{math}的单调递减线性函数。即为形式\begin{math}r(1-\frac{x}{k})\end{math}，其中\begin{math}r,k\end{math}为正常数。这就给出了Logistic方程
+
+	\begin{align}
+		\begin{split}
+		\label{eq:feedforward}
+		\dot{x}=rx\left ( 1-\frac{x}{k} \right )
+	\end{split}
+	\end{align}
+
+通过线性代数与常微分方程的知识我们可以求解出(2.5)的通解为：
+\begin{align}
+	\begin{split}
+	\label{eq:feedforward}
+	x(t)=\frac{Kx(0)e^{rt}}{K+x(0)(e^{rt}-1)}
+	\end{split}
+\end{align}
+
+根据通解，我们可以看出解的性态是容易分析的：如果\begin{math}x=0\end{math}或\begin{math}x=K\end{math}，则\dot{x}为0;在这两种情况下，密度不会发生变化。当\begin{math}0<x<K\end{math}时，密度增加; \begin{math}x>K\end{math}时，密度减少。
+
+\section{离散模型的递归关系}
+某些昆虫可以视为世代不重叠种群。我们用\begin{math}y\end{math}和\begin{math}y'\end{math}分别表示某一代及下一代的种群量。类似上文我们用\begin{math}\frac{y'-y}{y}\end{math}表示其内禀单位增长率。类比Logistic增长公式，设其实际增长率为y的线性递减函数，则有：
+	\begin{align}
+		\begin{split}
+		\label{eq:feedforward}
+		y'=Ry\left (1- \frac{y}{K} \right )
+		\end{split}
+	\end{align}
+
+对于这个离散模型，\begin{math}y'\end{math}与\begin{math}y\end{math}均不能超过其种群容纳量K，否则方程无意义。我们可以求解出当\begin{math}R>4\end{math}而\begin{math}y \to \frac{K}{2} \end{math}，则\begin{math}y'>K\end{math}，模型失去意义。因此我们限制\begin{math}R\in \left ( 0,4 \right )\end{math}。
+
+这个有明显的缺陷的方程是否值得继续在本文中讨论呢？答案是肯定的。而推动接下来的讨论不是其生物学意义，而是这个简单动力学方程的解的性态有助于解释之后要引入的数学概念。
+	
+利用换元法，令\begin{math}x=\frac{y}{K},x'=\frac{y'}{K},r=\frac{R}{K}\end{math}，我们可以得到差分方程\begin{math}x'=F(x)\end{math},
+	\begin{align*}
+		\begin{split}
+		\label{eq:feedforward}
+		F(x)=Rx(1-x)
+		\end{split}
+	\end{align*}
+
+	接下来一节，我们通过这个最简单的非线性递归关系解的性态讨论其复杂的动力学性态，并引入三个重要的概念：稳定点，分岔与混沌。
+
+\section{稳定和不稳定不动点}
+我们考虑\begin{math}R\end{math}在0到4之间，映射
+	\begin{align}
+		\begin{split}
+		\label{eq:feedforward}
+		x\rightarrow Rx(1-x)
+	\end{split}
+	\end{align}
+在区间\begin{math}\left [ 0,1 \right ]\end{math}定义了一个动力系统。当\begin{math}R\leqslant 1\end{math}，对所有\begin{math}
+x\end{math}都有\begin{math}x'<x\end{math}，\begin{math}x\end{math}的轨道单调减小趋于0.所以我们仅讨论\begin{math}x>1\end{math}。
+
+此时\begin{math}F\end{math}为一抛物线与\begin{math}x\end{math}轴交于0和1,在\begin{math}\frac{1}{2}\end{math}处达到其最大值。显然0是一个不动点。\begin{math}F\end{math}与对角线\begin{math}y=x\end{math}定义域中交于唯一点\begin{math}P\end{math}，横坐标\begin{math}p=\frac{R-1}{R}\end{math}.
+
+我们可以计算看看P的性态：
+
+由均值定理
+\begin{align*}
+	\begin{split}
+	\label{eq:feedforward}
+	F(x)-p=F(x)-F(p)=(x-p)\frac{\mathrm{d} F(c)}{\mathrm{d} x}
+\end{split}
+\end{align*}
+
+即\begin{math}\exists c\in [x,p]\end{math}使上式成立。
+
+如果\begin{math}\left | \frac{\mathrm{d} F(p)}{\mathrm{d} x} \right |<1\end{math}，则\begin{math}\left | \frac{\mathrm{d} F(c)}{\mathrm{d} x} \right |<1\end{math}，在\begin{math}x\rightarrow c\end{math}（从而c）的时候成立。即有
+
+\begin{align*}
+	\begin{split}
+	\label{eq:feedforward}
+	\left | F(x)-p \right |<\left | x-p \right |
+\end{split}
+\end{align*}
+即\begin{math}x'\end{math}比\begin{math}x\end{math}更接近\begin{math}P\end{math}，即\begin{math}x\end{math}在合适的邻域收敛于\begin{math}p\end{math}。我们称此时\begin{math}P\end{math}是渐近稳定的。
+
+类似的，如果\begin{math}\left | \frac{\mathrm{d} F(p)}{\mathrm{d} x} \right |>1\end{math}，则
+	\begin{align*}
+		\begin{split}
+		\label{eq:feedforward}
+		\left | F(x)-p \right |>\left | x-p \right |
+	\end{split}
+	\end{align*}
+
+即\begin{math}x\end{math}的轨道离开不动点，此时\begin{math}P\end{math}不是稳定点。
+
+求解方程\begin{math}F(x)=Rx(1-x)\end{math}得\begin{math}\frac{\mathrm{d} F(p)}{\mathrm{d} x}=2-R\end{math}.即当\begin{math}1<R<3\end{math}，\begin{math}P\end{math}为渐近稳定;但当\begin{math}3<R<4\end{math}是为不稳定。
+
+
+\section{分岔}
+当问题变成两个世代的时候，即\begin{math}x\end{math}的映射为\begin{math}F(F(x))=F^{(2)}(x)\end{math}.此时\begin{math}F^{(2)}(x)\end{math}为四次多项式，其局部极小在\begin{math}\frac{1}{2}\end{math}处，两个局部极大值对称地在\begin{math}\frac{1}{2}\end{math}的左右。对角线\begin{math}y=x\end{math}与\begin{math}F^{(2)}(x)\end{math}仍然交于\begin{math}p\end{math}。此时\begin{math}p\end{math}处的导数为\begin{math}(2-R)^{2}\end{math}。我们称此时
+
+如果\begin{math}1<R<3\end{math}，即\begin{math}P\end{math}是渐近稳定的，则对角线与\begin{math}F^{(2)}(x)\end{math}唯一交点即为\begin{math}P\end{math};如果\begin{math}3<R<4\end{math}，\begin{math}P\end{math}斜率大于1，则可以得到另外两个交点。这两个交点对应于周期2点\begin{math}p1,p2\end{math}。
+
+接下来利用解的性态看一下周期的解的性态：
+
+如果存在\begin{math}k>1\end{math}使得\begin{math}T^{k}x=x\end{math}，整数\begin{math}k\end{math}称为\begin{math}x\end{math}的周期。
+
+研究周期解与稳定点可以得到很多有趣的性质：在模型（2.8）中，增长的变化具有一个世代的滞后。这种“滞后”导致的行为过渡，比如从不动点的一端跳到另一端，产生振荡而不能稳定下来。
